@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: <name>-<isu_num>
+  name: lab0-jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lab0-jupyter
+  template:
+    metadata:
+      labels:
+        app: lab0-jupyter
+        jupyter: lab0
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: lab0-jupyter-cm
+            items:
+              - key: "jupyter_notebook_config.py"
+                path: "jupyter_notebook_config.py"
+      containers:
+        - name: jupyter
+          image: node03.st:5000/pyspark-hdfs-jupyter:<your_login>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8282
+          command: [ "start-notebook.sh" ]
+          args: [ "--NotebookApp.token='your_password'", "--NotebookApp.port=8282" ]  # Here you can specify your password for Jupyter Server  resources:
+
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+
+          volumeMounts:
+            - mountPath: "/home/jovyan/.jupyter"
+              name: config
+              readOnly: true

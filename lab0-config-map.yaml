@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: <name>-<isu_num>
+  name: lab0-jupyter-cm
+data:
+  jupyter_notebook_config.py: |
+    c.NotebookApp.trust_xheaders = True
+    c.NotebookApp.quit_button = False

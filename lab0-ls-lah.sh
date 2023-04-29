@@ -1,0 +1,1 @@
+kubectl exec <pod_name> -- ls .jupyter
