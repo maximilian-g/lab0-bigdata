@@ -23,7 +23,7 @@ Task 5:
 <br> 
 After everything is running, type command with your pod name:
 <br>
-<strong>kubectl logs pod/lab0-jupyter-1234  > lab0-jupyter.log</strong>
+<strong>kubectl logs pod/lab0-jupyter-1234 --timestamps > lab0-jupyter.log</strong>
 
 <br>
 <br>
