@@ -37,6 +37,7 @@ spec:
               cpu: "1"
 
           volumeMounts:
-            - mountPath: "/home/jovyan/.jupyter"
+            - mountPath: "/home/jovyan/.jupyter/jupyter_notebook_config.py"
+              subPath: jupyter_notebook_config.py
               name: config
               readOnly: true
